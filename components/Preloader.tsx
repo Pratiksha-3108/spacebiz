@@ -17,11 +17,10 @@ const EASE_GROW = [0.76, 0, 0.24, 1] as const;
 // During loading:
 //   w1 ("An Address") in col 2
 //   w2 ("Built For") in col 3
-//   w3 ("Ambition") ABOVE the image card (top-right of col 4, matching 'Living' in Lenval)
-//   w4 ("In Baner") BELOW the image card (bottom-left of col 4, matching 'Of' in Lenval)
+//   w3 ("Ambition") ABOVE the image card (top-right of col 4)
+//   w4 ("In Baner") BELOW the image card (bottom-left of col 4)
 // When aligned (100%):
-//   all glide gracefully into the straight horizontal row at top: 50%
-//   with guaranteed generous spacing between "Address" and "Built For"
+//   all glide into straight horizontal row at top: 50%
 const WORD_POS = {
   w1: {
     loading: { top: "42%", left: "8.5%" },
@@ -32,12 +31,12 @@ const WORD_POS = {
     aligned: { top: "50%", left: "29%" },
   },
   w3: {
-    loading: { top: "15%", left: "70%" }, // ABOVE the image
-    aligned: { top: "50%", left: "58.5%" }, // glides to straight row
+    loading: { top: "15%", left: "70%" }, // ABOVE image
+    aligned: { top: "50%", left: "58.5%" }, // straight row
   },
   w4: {
-    loading: { top: "76%", left: "58.5%" }, // BELOW the image
-    aligned: { top: "50%", left: "74%" }, // glides to straight row
+    loading: { top: "76%", left: "58.5%" }, // BELOW image
+    aligned: { top: "50%", left: "74%" }, // straight row
   },
 };
 
@@ -67,16 +66,16 @@ export default function Preloader() {
       }
 
       // 100% reached
-      // 1) image 1 collapses to line, words glide into straight row with clean spacing
-      timers.push(setTimeout(() => setPhase("collapse"), 220));
-      // 2) image 2 expands from center line to fullscreen
+      // 1) image 1 collapses to line, words glide into row, loading counter disappears
+      timers.push(setTimeout(() => setPhase("collapse"), 200));
+      // 2) banner image expands from center line to fullscreen, overlay fades
       timers.push(setTimeout(() => setPhase("grow"), 650));
-      // 3) reveal hero smoothly
+      // 3) unmount preloader cleanly to reveal hero
       timers.push(
         setTimeout(() => {
           setIsDone(true);
           document.body.style.overflow = "";
-        }, 1600)
+        }, 1500)
       );
     };
 
@@ -101,12 +100,12 @@ export default function Preloader() {
         left: WORD_POS[key].loading.left,
       },
       animate: {
-        opacity: 1,
+        opacity: growing ? 0 : 1,
         top: pos.top,
         left: pos.left,
       },
       transition: {
-        opacity: { duration: 0.4 },
+        opacity: { duration: growing ? 0.25 : 0.4 },
         top: { duration: 0.55, ease: EASE_IO },
         left: { duration: 0.55, ease: EASE_IO },
       },
@@ -122,15 +121,19 @@ export default function Preloader() {
           animate={{ opacity: 1 }}
           exit={{ opacity: 0, transition: { duration: 0.35, ease: EASE_IO } }}
         >
-          {/* Architectural Background Grid Lines */}
-          <div className="lenval-grid-lines">
+          {/* Architectural Background Grid Lines - fades out when banner expands */}
+          <motion.div
+            className="lenval-grid-lines"
+            animate={{ opacity: growing ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="lenval-col-line line-1" />
             <div className="lenval-col-line line-2" />
             <div className="lenval-col-line line-3" />
             <div className="lenval-col-line line-4" />
             <div className="lenval-h-line line-top" />
             <div className="lenval-h-line line-bottom" />
-          </div>
+          </motion.div>
 
           {/* Main Editorial Content Stage */}
           <div className="lenval-main-stage">
@@ -144,12 +147,12 @@ export default function Preloader() {
               <span>Built For</span>
             </motion.div>
 
-            {/* Word 3: Ambition - ABOVE the image card during loading */}
+            {/* Word 3: Ambition - ABOVE image card during loading */}
             <motion.div className="lenval-word lenval-word-3" {...getWordMotion("w3")}>
               <span>Ambition</span>
             </motion.div>
 
-            {/* Word 4: In Baner - BELOW the image card during loading */}
+            {/* Word 4: In Baner - BELOW image card during loading */}
             <motion.div className="lenval-word lenval-word-4" {...getWordMotion("w4")}>
               <span>In Baner</span>
             </motion.div>
@@ -178,22 +181,23 @@ export default function Preloader() {
               <img src={IMAGE_1} alt="Jhamtani SpaceBiz" className="lenval-portal-img" />
             </motion.div>
 
-            {/* IMAGE 2: Image Portal — thin line in the centre -> expands to fullscreen */}
+            {/* IMAGE 2: Banner Image Portal — expands from center line to fullscreen */}
             <motion.div
               className="lenval-image-portal"
               initial={{ width: "clamp(70px, 8vw, 120px)", height: "2px", opacity: 0 }}
               animate={
                 growing
-                  ? { width: "100vw", height: "100vh", opacity: 1 }
+                  ? { width: "100vw", height: "100vh", opacity: 1, zIndex: 50 }
                   : {
                       width: "clamp(70px, 8vw, 120px)",
                       height: "2px",
                       opacity: aligned ? 0.8 : 0,
+                      zIndex: 4,
                     }
               }
               transition={{
-                width: { duration: 0.9, ease: EASE_GROW },
-                height: { duration: 0.9, ease: EASE_GROW },
+                width: { duration: 0.85, ease: EASE_GROW },
+                height: { duration: 0.85, ease: EASE_GROW },
                 opacity: { duration: 0.15 },
               }}
             >
@@ -205,24 +209,36 @@ export default function Preloader() {
             </motion.div>
           </div>
 
-          {/* Top Center Logo Header */}
-          <header className="lenval-top-header">
+          {/* Top Center Logo Header - fades out when banner expands */}
+          <motion.header
+            className="lenval-top-header"
+            animate={{ opacity: growing ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="lenval-logo-box">
               <img src={LOGO} alt="Jhamtani SpaceBiz" className="lenval-top-logo" />
             </div>
-          </header>
+          </motion.header>
 
-          {/* Left: Loading label and percentage counter */}
-          <div className="lenval-counter-column">
+          {/* Left: Loading label and percentage counter - FADES OUT ONCE 100% REACHED */}
+          <motion.div
+            className="lenval-counter-column"
+            animate={{ opacity: aligned ? 0 : 1 }}
+            transition={{ duration: 0.25 }}
+          >
             <div className="lenval-loading-label">Loading</div>
             <div className="lenval-percent-number">{progress}%</div>
-          </div>
+          </motion.div>
 
-          {/* Bottom Brand Details */}
-          <div className="lenval-bottom-right">
+          {/* Bottom Brand Details - fades out when banner expands */}
+          <motion.div
+            className="lenval-bottom-right"
+            animate={{ opacity: growing ? 0 : 1 }}
+            transition={{ duration: 0.3 }}
+          >
             <div className="brand-name">JHAMTANI SPACEBIZ</div>
             <div className="brand-sub">Grade A Commercial Tower, Baner</div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
     </AnimatePresence>

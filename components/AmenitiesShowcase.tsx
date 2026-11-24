@@ -5,23 +5,23 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform }
 const slides = [
   [
     "Billiards & Gaming Lounge",
-    "https://images.unsplash.com/photo-1544816155-12df9643f363?auto=format&fit=crop&w=2000&q=85",
+    "/images/Luxury Game Lounge_ Billiards and Arcade.png",
   ],
   [
     "Modern Fitness Gym",
-    "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=2000&q=85",
+    "/images/amenities/fitness-gym.webp",
   ],
   [
     "Executive Salon & Grooming",
-    "https://images.unsplash.com/photo-1560066984-138dadb4c035?auto=format&fit=crop&w=2000&q=85",
+    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=85",
   ],
   [
     "Corporate Food Court & Dining",
-    "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=2000&q=85",
+    "/images/amenities/food-court.webp",
   ],
   [
     "Landscaped Sky Terraces",
-    "https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=2000&q=85",
+    "/images/image-4.webp",
   ],
 ] as const;
 
@@ -33,7 +33,7 @@ export default function AmenitiesShowcase() {
   const [idx, setIdx] = useState(0);
   const { scrollYProgress: p } = useScroll({ target: ref, offset: ["start start", "end end"] });
 
-  const panelY = useTransform(p, [0, INTRO], ["100%", "0%"]);
+  const panelY = useTransform(p, [0, INTRO], ["35vh", "0vh"]);
   const introY = useTransform(p, [0, INTRO], [0, -90]);
   const introOpacity = useTransform(p, [0, INTRO * 0.8], [1, 0]);
   const uiOpacity = useTransform(p, [INTRO * 0.6, INTRO], [0, 1]);

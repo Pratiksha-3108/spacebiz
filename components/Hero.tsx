@@ -16,7 +16,7 @@ export default function Hero() {
       <motion.div className="hero-bg" style={{ y }}>
         <motion.img
           src="/images/banner.webp" alt="Jhamtani SpaceBiz Banner"
-          style={{ transformOrigin: "center top" }}
+          style={{ transformOrigin: "left top" }}
           initial={{ scale: 1.1, filter: "brightness(0)" }}
           animate={{ scale: 1, filter: "brightness(1)" }}
           transition={{ duration: 2.2, ease }}
