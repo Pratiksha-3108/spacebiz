@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 40" width="260" height="40" fill="none">
+  <!-- Architectural Tower Icon -->
+  <g transform="translate(4, 2)">
+    <rect x="2" y="14" width="7" height="22" rx="1.5" fill="#a76a4c" opacity="0.85" />
+    <rect x="12" y="4" width="8" height="32" rx="2" fill="#d99879" />
+    <rect x="23" y="10" width="7" height="26" rx="1.5" fill="#a76a4c" />
+    <!-- Tower spire -->
+    <path d="M16 0 L16 4" stroke="#d99879" stroke-width="2" stroke-linecap="round" />
+  </g>
+  <!-- Text Brand -->
+  <g transform="translate(44, 4)">
+    <text x="0" y="16" fill="#ffffff" font-family="'Marcellus', Georgia, serif" font-size="16" font-weight="600" letter-spacing="2.5">JHAMTANI</text>
+    <text x="0" y="29" fill="#d99879" font-family="'Figtree', sans-serif" font-size="10.5" font-weight="700" letter-spacing="4">SPACEBIZ</text>
+  </g>
+</svg>
