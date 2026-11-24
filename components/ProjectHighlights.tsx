@@ -55,7 +55,7 @@ export default function ProjectHighlights() {
       <div className="vj-highlights-overlay" />
 
       <div className="wrap vj-highlights-container">
-        {/* Section Heading matching VJ Indiworks style */}
+        {/* Section Heading matching site-wide SectionHead hierarchy */}
         <motion.div
           className="vj-highlights-header"
           initial={{ opacity: 0, y: 24 }}
@@ -63,9 +63,10 @@ export default function ProjectHighlights() {
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.75, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h2 className="vj-highlights-title">HIGHLIGHTS</h2>
+          <span className="vj-highlights-eyebrow">HIGHLIGHTS</span>
+          <h2 className="vj-highlights-title">Distinctive Pillars of SpaceBiz</h2>
           <p className="vj-highlights-sub">
-            Showcasing The Key Pillars Of Our Real Estate Services
+            Showcasing the key pillars and architectural excellence of our Grade A commercial landmark
           </p>
         </motion.div>
 

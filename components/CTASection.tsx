@@ -16,8 +16,9 @@ export default function CTASection() {
     offset: ["start end", "end start"],
   });
 
-  // Animate the tall image vertically so its full height (from tower crown down to ground base) scrolls through as user scrolls
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "-48%"]);
+  // Keep tower seen from the very top initially when landing on the CTA section (0 to 0.42),
+  // then smoothly scroll down through the full height of the building as user scrolls past.
+  const y = useTransform(scrollYProgress, [0, 0.42, 1], ["0%", "0%", "-38%"]);
 
   return (
     <section ref={sectionRef} className="sharp-cta-section" id="contact">
