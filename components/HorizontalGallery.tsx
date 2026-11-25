@@ -201,11 +201,6 @@ export default function HorizontalGallery() {
               />
             </div>
           </div>
-
-          <div className="oneroof-bar-right">
-            <span className="oneroof-scroll-text">SCROLL</span>
-            <span className="oneroof-scroll-arrow">→</span>
-          </div>
         </div>
       </div>
     </section>

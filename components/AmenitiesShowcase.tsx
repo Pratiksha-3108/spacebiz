@@ -94,7 +94,6 @@ export default function AmenitiesShowcase() {
                   {slides[idx][0]}
                 </motion.h3>
               </AnimatePresence>
-              <span className="amen-count">{String(idx + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}</span>
             </div>
             <div className="amen-controls">
               <button type="button" className="amen-nav" onClick={() => goTo(idx - 1)} disabled={idx === 0}>Previous</button>

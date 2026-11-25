@@ -192,7 +192,7 @@ export default function ConnectivityMap() {
         {places.map((p, i) => (
           <motion.div
             key={p.id}
-            className="cmap-place"
+            className={`cmap-place cmap-pin-${p.id}`}
             style={{ left: `${p.x}%`, top: `${p.y}%` }}
             initial={{ opacity: 0, scale: 0.2, y: -28 }}
             animate={
@@ -208,7 +208,16 @@ export default function ConnectivityMap() {
             }}
           >
             <div className="cmap-card">
-              <span className="cmap-place-name">{p.name}</span>
+              <span className="cmap-place-name">
+                {p.id === "airport" ? (
+                  <>
+                    <span className="cmap-name-desktop">{p.name}</span>
+                    <span className="cmap-name-mobile">Pune Airport</span>
+                  </>
+                ) : (
+                  p.name
+                )}
+              </span>
               <span className="cmap-place-time">{p.time}</span>
             </div>
             <img src="/images/points.svg" alt="" className="cmap-pin-icon" />

@@ -141,7 +141,7 @@ export default function Footer() {
           <div className="schmidt-contact-col">
             <div className="schmidt-social-icons">
               <a
-                href="https://www.instagram.com/jhamtaniofficial/"
+                href="https://www.instagram.com/jhamtani_official/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="schmidt-icon-btn"
@@ -154,7 +154,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.facebook.com/jhamtaniofficial"
+                href="https://www.facebook.com/jhamtani"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="schmidt-icon-btn"
@@ -165,7 +165,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.youtube.com/@jhamtaniofficial"
+                href="https://www.youtube.com/watch?v=J000_UMusmU&t=2s"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="schmidt-icon-btn"
@@ -177,7 +177,7 @@ export default function Footer() {
                 </svg>
               </a>
               <a
-                href="https://www.linkedin.com/company/jhamtanigroup/"
+                href="https://www.linkedin.com/company/jhamtani/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="schmidt-icon-btn"
