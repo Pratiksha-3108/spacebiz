@@ -11,7 +11,7 @@ export default function EnquiryModal() {
     email: "",
     spaceType: "",
     message: "",
-    authorize: false, // Not auto-selected by default
+    authorize: true,
   });
 
   useEffect(() => {
@@ -77,7 +77,7 @@ export default function EnquiryModal() {
         email: "",
         spaceType: "",
         message: "",
-        authorize: false,
+        authorize: true,
       });
     }, 2800);
   };
@@ -94,56 +94,73 @@ export default function EnquiryModal() {
       aria-modal="true"
       aria-labelledby="enquire-modal-title"
     >
-      <div className="enquire-modal-card">
-        {/* Close Button */}
-        <button
-          className="enquire-close-btn"
-          onClick={() => setIsOpen(false)}
-          aria-label="Close enquiry form"
-        >
-          <svg
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <path d="M18 6L6 18M6 6l12 12" />
-          </svg>
-        </button>
+      <div className="enquire-split-modal">
+        {/* =========================================
+            LEFT COLUMN: Banner Image with Top-Left Building Name & Location
+            ========================================= */}
+        <div className="enquire-banner-col">
+          <img
+            src="/images/CTA_banner.webp"
+            alt="Jhamtani SpaceBiz"
+            className="enquire-banner-full-img"
+          />
 
-        {isSubmitted ? (
-          <div className="enquire-success-state">
-            <div className="enquire-success-icon">
-              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#a76a4c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                <polyline points="20 6 9 17 4 12"></polyline>
+          {/* Top-Left Building Name and Location Overlay */}
+          <div className="enquire-banner-top-overlay" />
+          <div className="enquire-banner-top-badge">
+            <span className="enquire-banner-proj-name">Jhamtani SpaceBiz</span>
+            <div className="enquire-banner-proj-loc">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                <circle cx="12" cy="10" r="3" />
               </svg>
+              <span>Baner Road, Pune</span>
             </div>
-            <h3>Thank You!</h3>
-            <p>Your enquiry has been received. Our sales advisory team will get in touch with you shortly.</p>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="enquire-form">
-            <div className="enquire-header">
-              <span className="enquire-eyebrow">Jhamtani SpaceBiz • Baner</span>
-              <h2 id="enquire-modal-title" className="enquire-title">Enquiry Form</h2>
-              <p className="enquire-subtitle">Connect with our commercial advisory team for bespoke office & retail options</p>
-              <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "12px", marginTop: "10px", fontSize: "11px", color: "#a1a1aa", letterSpacing: "0.04em" }}>
-                <span>Direct Hotline: <strong style={{ color: "#d97746" }}>+91 744 744 766 9</strong></span>
-                <span>•</span>
-                <span>MahaRERA: <strong style={{ color: "#f4f4f5" }}>P52100054460</strong></span>
-              </div>
-            </div>
+        </div>
 
-            {/* Row 1: Name & Mobile Number */}
-            <div className="enquire-grid-2">
-              <div className="enquire-field">
-                <label htmlFor="enquire-name">NAME</label>
+        {/* =========================================
+            RIGHT COLUMN: Form with Previous Fields
+            ========================================= */}
+        <div className="enquire-form-col">
+          {/* Header Row: Title & Close Button */}
+          <div className="enquire-form-header">
+            <h3 id="enquire-modal-title" className="enquire-form-heading">
+              Get Complete Project Details Now
+            </h3>
+            <button
+              type="button"
+              className="enquire-form-close-btn"
+              onClick={() => setIsOpen(false)}
+              aria-label="Close modal"
+            >
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+
+          {/* Divider line across header */}
+          <div className="enquire-header-divider" />
+
+          {isSubmitted ? (
+            <div className="enquire-split-success">
+              <div className="enquire-success-icon-wrap">
+                <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#a76a4c" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <polyline points="20 6 9 17 4 12"></polyline>
+                </svg>
+              </div>
+              <h4>Thank You!</h4>
+              <p>Your request has been received. Our commercial project advisory team will reach out with the complete brochure and pricing details shortly.</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="enquire-split-form">
+              {/* Field 1: Name */}
+              <div className="enquire-line-field">
+                <label className="enquire-field-label" htmlFor="prev-name">NAME</label>
                 <input
-                  id="enquire-name"
+                  id="prev-name"
                   type="text"
                   required
                   placeholder="Your Name"
@@ -152,10 +169,11 @@ export default function EnquiryModal() {
                 />
               </div>
 
-              <div className="enquire-field">
-                <label htmlFor="enquire-mobile">MOBILE NUMBER</label>
+              {/* Field 2: Mobile Number */}
+              <div className="enquire-line-field">
+                <label className="enquire-field-label" htmlFor="prev-mobile">MOBILE NUMBER</label>
                 <input
-                  id="enquire-mobile"
+                  id="prev-mobile"
                   type="tel"
                   required
                   pattern="[0-9]{10}"
@@ -164,14 +182,12 @@ export default function EnquiryModal() {
                   onChange={(e) => setFormData({ ...formData, mobile: e.target.value })}
                 />
               </div>
-            </div>
 
-            {/* Row 2: Email & Preferred Space Type */}
-            <div className="enquire-grid-2">
-              <div className="enquire-field">
-                <label htmlFor="enquire-email">EMAIL</label>
+              {/* Field 3: Email */}
+              <div className="enquire-line-field">
+                <label className="enquire-field-label" htmlFor="prev-email">EMAIL</label>
                 <input
-                  id="enquire-email"
+                  id="prev-email"
                   type="email"
                   required
                   placeholder="Your Email Address"
@@ -180,11 +196,12 @@ export default function EnquiryModal() {
                 />
               </div>
 
-              <div className="enquire-field">
-                <label htmlFor="enquire-spacetype">PREFERRED SPACE TYPE</label>
-                <div className="enquire-select-wrap">
+              {/* Field 4: Preferred Space Type (Dropdown from previous form) */}
+              <div className="enquire-line-field">
+                <label className="enquire-field-label" htmlFor="prev-spacetype">PREFERRED SPACE TYPE</label>
+                <div className="enquire-select-container">
                   <select
-                    id="enquire-spacetype"
+                    id="prev-spacetype"
                     required
                     value={formData.spaceType}
                     onChange={(e) => setFormData({ ...formData, spaceType: e.target.value })}
@@ -196,54 +213,50 @@ export default function EnquiryModal() {
                     <option value="Bare Shell Floor Plate">Bare Shell Floor Plate</option>
                     <option value="Corporate HQ Floor">Corporate HQ Floor</option>
                   </select>
-                  <span className="enquire-select-chevron" aria-hidden="true">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                  <span className="enquire-select-arrow" aria-hidden="true">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                       <polyline points="6 9 12 15 18 9"></polyline>
                     </svg>
                   </span>
                 </div>
               </div>
-            </div>
 
-            {/* Row 3: Message */}
-            <div className="enquire-field full">
-              <label htmlFor="enquire-message">MESSAGE</label>
-              <textarea
-                id="enquire-message"
-                rows={4}
-                placeholder="Write your requirement here..."
-                value={formData.message}
-                onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-              />
-            </div>
-
-            {/* Row 4: Disclaimer Checkbox */}
-            <div className="enquire-disclaimer-wrap">
-              <label className="enquire-checkbox-label">
-                <input
-                  type="checkbox"
-                  required
-                  checked={formData.authorize}
-                  onChange={(e) => setFormData({ ...formData, authorize: e.target.checked })}
+              {/* Field 5: Message (from previous form) */}
+              <div className="enquire-line-field">
+                <label className="enquire-field-label" htmlFor="prev-message">MESSAGE</label>
+                <textarea
+                  id="prev-message"
+                  rows={2}
+                  placeholder="Write your requirement here..."
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                 />
-                <span className="enquire-disclaimer-text">
-                  I authorize Jhamtani and its representative to contact me with updates and notifications via Email, SMS, WhatsApp, and Call. This will override the registry on DND / NDNC.
-                </span>
-              </label>
-            </div>
+              </div>
 
-            {/* Row 5: Centered Pill Submit Button */}
-            <div className="enquire-btn-row">
-              <button type="submit" className="enquire-submit-btn">
-                SUBMIT
-              </button>
-            </div>
+              {/* Checkbox Consent (Exact previous authorization text) */}
+              <div className="enquire-auth-row">
+                <label className="enquire-auth-label">
+                  <input
+                    type="checkbox"
+                    required
+                    checked={formData.authorize}
+                    onChange={(e) => setFormData({ ...formData, authorize: e.target.checked })}
+                  />
+                  <span>
+                    I authorize Jhamtani and its representative to contact me with updates and notifications via Email, SMS, WhatsApp, and Call. This will override the registry on DND / NDNC.
+                  </span>
+                </label>
+              </div>
 
-            <p style={{ textAlign: "center", fontSize: "10.5px", color: "#71717a", marginTop: "16px", lineHeight: "1.4" }}>
-              Site Address: Survey No. 264P/1, Opp. Gadoo&apos;s Sweets, Near Amar Honda Showroom, Baner Road, Baner, Pune
-            </p>
-          </form>
-        )}
+              {/* Submit Button */}
+              <div className="enquire-submit-row">
+                <button type="submit" className="enquire-split-submit-btn">
+                  Submit
+                </button>
+              </div>
+            </form>
+          )}
+        </div>
       </div>
     </div>
   );

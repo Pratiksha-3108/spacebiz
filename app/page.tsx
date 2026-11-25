@@ -6,6 +6,7 @@ import ConnectivityMap from "@/components/ConnectivityMap";
 import ProjectHighlights from "@/components/ProjectHighlights";
 import OverviewSection from "@/components/OverviewSection";
 import PriceListSection from "@/components/PriceListSection";
+import FloorPlanSection from "@/components/FloorPlanSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SectionHead from "@/components/SectionHead";
@@ -60,7 +61,7 @@ export default function Page() {
 
       <AmenitiesShowcase />
 
-      <section className="light">
+      <section id="spaces" className="light choose-space-section">
         <div className="wrap">
           <SectionHead eyebrow="CHOOSE YOUR SPACE" title="A format for every business" sub="Offices, retail and showrooms, planned around how modern businesses operate." center />
           <div className="grid3">
@@ -75,6 +76,8 @@ export default function Page() {
       </section>
 
       <PriceListSection />
+
+      <FloorPlanSection />
 
       <section className="dark walk">
         <div className="wrap">

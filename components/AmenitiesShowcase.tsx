@@ -5,23 +5,23 @@ import { AnimatePresence, motion, useMotionValueEvent, useScroll, useTransform }
 const slides = [
   [
     "Billiards & Gaming Lounge",
-    "/images/Luxury Game Lounge_ Billiards and Arcade.png",
+    "/images/amenities/ame1.png",
   ],
   [
     "Modern Fitness Gym",
-    "/images/amenities/fitness-gym.webp",
+    "https://images.unsplash.com/photo-1571902943202-507ec2618e8f?auto=format&fit=crop&w=2000&q=85",
   ],
   [
     "Executive Salon & Grooming",
-    "https://images.unsplash.com/photo-1585747860715-2ba37e788b70?auto=format&fit=crop&w=2000&q=85",
+    "/images/amenities/ame3.png",
   ],
   [
     "Corporate Food Court & Dining",
-    "/images/amenities/food-court.webp",
+    "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=2000&q=85",
   ],
   [
     "Landscaped Sky Terraces",
-    "/images/image-4.webp",
+    "https://images.unsplash.com/photo-1758193431353-87812fbff5cd?auto=format&fit=crop&w=2000&q=85",
   ],
 ] as const;
 

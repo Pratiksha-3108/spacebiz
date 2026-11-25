@@ -128,6 +128,7 @@ export default function Footer() {
                 <li><a href="#" className="schmidt-nav-link">Home</a></li>
                 <li><a href="#about" className="schmidt-nav-link">Overview</a></li>
                 <li><a href="#amenities" className="schmidt-nav-link">Amenities</a></li>
+                <li><a href="#floor-plans" className="schmidt-nav-link">Floor Plans</a></li>
                 <li><a href="#pricing" className="schmidt-nav-link">Price List</a></li>
               </ul>
               <ul className="schmidt-nav-list">

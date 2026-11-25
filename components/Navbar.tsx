@@ -35,6 +35,7 @@ export default function Navbar() {
     ["About", "about"],
     ["Highlights", "highlights"],
     ["Amenities", "amenities"],
+    ["Floor Plans", "floor-plans"],
     ["Price List", "pricing"],
     ["Why Invest", "why-invest"],
     ["Location", "location"],
@@ -45,7 +46,7 @@ export default function Navbar() {
     <>
       <nav className={`nav ${scrolled || mobileMenuOpen ? "scrolled" : ""}`}>
         <ul className="nav-left">
-          {[["About", "about"], ["Why Invest", "why-invest"], ["Amenities", "amenities"]].map(([l, h]) => (
+          {[["About", "about"], ["Amenities", "amenities"], ["Floor Plans", "floor-plans"]].map(([l, h]) => (
             <li key={l}>
               <a href={`#${h}`}>{l}</a>
             </li>
@@ -58,7 +59,7 @@ export default function Navbar() {
 
         <div className="nav-right">
           <ul>
-            {[["Location", "location"], ["Contact", "contact"]].map(([l, h]) => (
+            {[["Why Invest", "why-invest"], ["Location", "location"], ["Contact", "contact"]].map(([l, h]) => (
               <li key={l}>
                 <a href={`#${h}`}>{l}</a>
               </li>
