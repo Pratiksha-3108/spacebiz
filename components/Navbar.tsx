@@ -37,7 +37,6 @@ export default function Navbar() {
     ["Amenities", "amenities"],
     ["Floor Plans", "floor-plans"],
     ["Price List", "pricing"],
-    ["Why Invest", "why-invest"],
     ["Location", "location"],
     ["Contact", "contact"],
   ];
@@ -59,7 +58,7 @@ export default function Navbar() {
 
         <div className="nav-right">
           <ul>
-            {[["Why Invest", "why-invest"], ["Location", "location"], ["Contact", "contact"]].map(([l, h]) => (
+            {[["Location", "location"], ["Contact", "contact"]].map(([l, h]) => (
               <li key={l}>
                 <a href={`#${h}`}>{l}</a>
               </li>
