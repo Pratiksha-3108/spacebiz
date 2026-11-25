@@ -1,9 +1,11 @@
+import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import HorizontalGallery from "@/components/HorizontalGallery";
 import AmenitiesShowcase from "@/components/AmenitiesShowcase";
 import ConnectivityMap from "@/components/ConnectivityMap";
 import ProjectHighlights from "@/components/ProjectHighlights";
 import OverviewSection from "@/components/OverviewSection";
+import PriceListSection from "@/components/PriceListSection";
 import CTASection from "@/components/CTASection";
 import Footer from "@/components/Footer";
 import SectionHead from "@/components/SectionHead";
@@ -38,6 +40,7 @@ const spaces = [
 export default function Page() {
   return (
     <main>
+      <Navbar />
       <Hero />
 
       <section className="stats-band">
@@ -59,7 +62,7 @@ export default function Page() {
 
       <section className="light">
         <div className="wrap">
-          <SectionHead eyebrow="CHOOSE YOUR SPACE" title="A format for every business" sub="Offices, retail and showrooms, planned around how modern businesses operate." />
+          <SectionHead eyebrow="CHOOSE YOUR SPACE" title="A format for every business" sub="Offices, retail and showrooms, planned around how modern businesses operate." center />
           <div className="grid3">
             {spaces.map(([t, d, s], i) => (
               <Reveal key={t} delay={i * 0.12} className="card">
@@ -71,9 +74,11 @@ export default function Page() {
         </div>
       </section>
 
+      <PriceListSection />
+
       <section className="dark walk">
         <div className="wrap">
-          <SectionHead eyebrow="WALKTHROUGH" title="Experience SpaceBiz" sub="Step inside and see the tower come to life." />
+          <SectionHead eyebrow="WALKTHROUGH" title="Experience SpaceBiz" sub="Step inside and see the tower come to life." center />
           <Reveal>
             <div className="walkthrough-video-frame">
               <iframe
@@ -92,7 +97,7 @@ export default function Page() {
 
       <section id="why-invest" className="light">
         <div className="wrap">
-          <SectionHead eyebrow="WHY INVEST" title="Invest in a future of possibilities" sub="Own commercial space in one of Pune's fastest-growing business corridors." />
+          <SectionHead eyebrow="WHY INVEST" title="Invest in a future of possibilities" sub="Own commercial space in one of Pune's fastest-growing business corridors." center />
           <div className="reasons">
             {reasons.map(([n, t, d], i) => (
               <Reveal key={n} delay={(i % 3) * 0.1} className="reason">
@@ -102,7 +107,6 @@ export default function Page() {
               </Reveal>
             ))}
           </div>
-          <Reveal><p className="disclaimer">Returns depend on market conditions and are not guaranteed.</p></Reveal>
         </div>
       </section>
 

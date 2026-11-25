@@ -49,20 +49,47 @@ export default function Footer() {
     };
 
     const tick = (now: number) => {
-      if (now - s.lastMove > 900) {
-        s.targetReveal = 0; // fade back to the ghost when idle
-      }
-      s.fx += (s.tx - s.fx) * 0.16;
-      s.fy += (s.ty - s.fy) * 0.16;
-      s.sx += (s.tx - s.sx) * 0.06;
-      s.sy += (s.ty - s.sy) * 0.06;
-      s.reveal += (s.targetReveal - s.reveal) * (s.targetReveal > s.reveal ? 0.2 : 0.05);
+      const isMobile = window.innerWidth <= 768;
 
-      word.style.setProperty("--mx", `${s.fx.toFixed(1)}px`);
-      word.style.setProperty("--my", `${s.fy.toFixed(1)}px`);
-      word.style.setProperty("--tx", `${s.sx.toFixed(1)}px`);
-      word.style.setProperty("--ty", `${s.sy.toFixed(1)}px`);
-      word.style.setProperty("--reveal", s.reveal.toFixed(3));
+      if (isMobile) {
+        const r = word.getBoundingClientRect();
+        const width = r.width || 320;
+        const height = r.height || 80;
+        // Automatic luxury light sweep back and forth across "SpaceBiz" on mobile view
+        const progress = Math.sin(now * 0.0016) * 0.5 + 0.5;
+        s.tx = progress * width;
+        s.ty = height * 0.5;
+        s.targetReveal = 0.95;
+
+        s.fx += (s.tx - s.fx) * 0.12;
+        s.fy += (s.ty - s.fy) * 0.12;
+        s.sx += (s.tx - s.sx) * 0.05;
+        s.sy += (s.ty - s.sy) * 0.05;
+        s.reveal += (s.targetReveal - s.reveal) * 0.1;
+
+        word.style.setProperty("--mx", `${s.fx.toFixed(1)}px`);
+        word.style.setProperty("--my", `${s.fy.toFixed(1)}px`);
+        word.style.setProperty("--tx", `${s.sx.toFixed(1)}px`);
+        word.style.setProperty("--ty", `${s.sy.toFixed(1)}px`);
+        word.style.setProperty("--reveal", s.reveal.toFixed(3));
+      } else {
+        // EXACT EXISTING DESKTOP BEHAVIOR - UNTOUCHED
+        if (now - s.lastMove > 900) {
+          s.targetReveal = 0; // fade back to the ghost when idle
+        }
+        s.fx += (s.tx - s.fx) * 0.16;
+        s.fy += (s.ty - s.fy) * 0.16;
+        s.sx += (s.tx - s.sx) * 0.06;
+        s.sy += (s.ty - s.sy) * 0.06;
+        s.reveal += (s.targetReveal - s.reveal) * (s.targetReveal > s.reveal ? 0.2 : 0.05);
+
+        word.style.setProperty("--mx", `${s.fx.toFixed(1)}px`);
+        word.style.setProperty("--my", `${s.fy.toFixed(1)}px`);
+        word.style.setProperty("--tx", `${s.sx.toFixed(1)}px`);
+        word.style.setProperty("--ty", `${s.sy.toFixed(1)}px`);
+        word.style.setProperty("--reveal", s.reveal.toFixed(3));
+      }
+
       raf = requestAnimationFrame(tick);
     };
 
@@ -93,16 +120,23 @@ export default function Footer() {
 
         {/* Links row (below the wordmark) */}
         <div className="schmidt-top-row">
-          <div className="schmidt-explore">Explore</div>
+          <div className="schmidt-nav-col">
+            <span className="schmidt-explore">Explore</span>
 
-          <nav aria-label="Footer navigation">
-            <ul className="schmidt-nav-list">
-              <li><a href="#" className="schmidt-nav-link">Home</a></li>
-              <li><a href="#about" className="schmidt-nav-link">Projects</a></li>
-              <li><a href="#highlights" className="schmidt-nav-link">Solutions</a></li>
-              <li><a href="#contact" className="schmidt-nav-link">Contact us</a></li>
-            </ul>
-          </nav>
+            <nav aria-label="Footer navigation" className="schmidt-nav-group">
+              <ul className="schmidt-nav-list">
+                <li><a href="#" className="schmidt-nav-link">Home</a></li>
+                <li><a href="#about" className="schmidt-nav-link">Overview</a></li>
+                <li><a href="#amenities" className="schmidt-nav-link">Amenities</a></li>
+                <li><a href="#pricing" className="schmidt-nav-link">Price List</a></li>
+              </ul>
+              <ul className="schmidt-nav-list">
+                <li><a href="#why-invest" className="schmidt-nav-link">Why Invest</a></li>
+                <li><a href="#location" className="schmidt-nav-link">Connectivity</a></li>
+                <li><a href="#contact" className="schmidt-nav-link">Contact Us</a></li>
+              </ul>
+            </nav>
+          </div>
 
           <div className="schmidt-contact-col">
             <div className="schmidt-social-icons">
@@ -170,7 +204,7 @@ export default function Footer() {
                   +91 744 744 766 9
                 </a>
               </p>
-              <p className="schmidt-info-line" style={{ maxWidth: "360px", lineHeight: 1.4, marginLeft: "auto" }}>
+              <p className="schmidt-info-line" style={{ maxWidth: "380px", lineHeight: 1.5 }}>
                 Survey No. 264P/1, Opp. Gadoo&apos;s Sweets, Near Amar Honda Showroom, Baner Road, Baner, Pune
               </p>
             </div>

@@ -8,7 +8,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 export default function Hero() {
   const ref = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "22%"]);
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "0%"]);
   const fade = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
 
   return (
@@ -22,26 +22,6 @@ export default function Hero() {
           transition={{ duration: 2.2, ease }}
         />
       </motion.div>
-      <nav className="nav">
-        <ul className="nav-left">
-          {[["About", "about"], ["Why Invest", "why-invest"], ["Amenities", "amenities"]].map(([l, h]) => (
-            <li key={l}><a href={`#${h}`}>{l}</a></li>
-          ))}
-        </ul>
-
-        <a href="#" className="nav-logo" aria-label="Jhamtani SpaceBiz">
-          <img src="/images/Spacebiz logo.webp" alt="Jhamtani SpaceBiz" height={48} />
-        </a>
-
-        <div className="nav-right">
-          <ul>
-            {[["Location", "location"], ["Contact", "contact"]].map(([l, h]) => (
-              <li key={l}><a href={`#${h}`}>{l}</a></li>
-            ))}
-          </ul>
-          <a href="#contact" className="btn">Enquire now</a>
-        </div>
-      </nav>
       <motion.div className="hero-copy" style={{ opacity: fade }}>
         {["Grade A commercial", "spaces in Baner"].map((line, i) => (
           <span key={line} className="line">
